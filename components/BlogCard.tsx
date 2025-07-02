@@ -1,8 +1,8 @@
 import { BlogPost } from "@/lib/posts"
-import Link from "next/link"
+
 import Image from "next/image"
 import { Button } from "./ui/button";
-import { ArrowBigRight, ArrowRight } from "lucide-react";
+import {  ArrowRight } from "lucide-react";
 
 export default function BlogCard({ post }: { post: BlogPost }) {
   

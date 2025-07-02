@@ -1,21 +1,19 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { posts } from "@/lib/posts";
+import BlogCard from "@/components/BlogCard";
+import { cards } from "@/lib/card";
+import Card from "@/components/Card";
 
-const posts = [
-  "AI-powered Talent Matching",
-  "Intelligent Candidate Insights",
-  "Streamlined Hiring Workflow",
-];
-
-export default function HomePage() {
+export default function BlogPage() {
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const [index, setIndex] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % posts.length);
-    }, 4000); // ⏱ change slide every 3 seconds
+    }, 4000);
 
     return () => clearInterval(interval);
   }, []);
@@ -28,17 +26,38 @@ export default function HomePage() {
   }, [index]);
 
   return (
-    <div className="overflow-hidden" ref={containerRef}>
-      <div className="flex w-[300vw]">
-        {posts.map((text, i) => (
-          <div
-            key={i}
-            className="w-screen h-screen flex items-center justify-center text-4xl font-bold"
-          >
-            {text}
-          </div>
-        ))}
+    <main>
+      <div className="w-full overflow-hidden">
+        <div
+          ref={containerRef}
+          className="flex h-full w-full overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide"
+        >
+          {posts.map((post) => (
+            <div
+              key={post.slug}
+              className="flex-shrink-0 w-screen flex justify-center items-center snap-center"
+            >
+              <div className=" w-full max-w-[1330px] p-4 mt-15">
+                <BlogCard post={post} />
+              </div>
+             
+
+            </div>
+          ))}
+        </div>
+        
       </div>
+     <div className="max-w-[1300px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
+  {cards.map((card, i) => (
+    <div key={i}>
+      <Card cards={card} />
     </div>
+  ))}
+</div>
+
+
+        
+    </main>
   );
 }
+
