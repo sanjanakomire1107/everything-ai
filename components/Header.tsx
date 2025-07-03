@@ -10,7 +10,7 @@ export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="w-full fixed bg-transparent ">
+    <header className="w-full fixed z-20 bg-transparent ">
       <div className="w-full ml-15 mx-auto flex justify-between items-start  mt-0.5 ">
         {/* Nav Box */}
         <div className="hidden md:flex items-center px-4 py-1.5 rounded-lg bg-gray-100  border-2 border-gray-300 shadow-sm">
